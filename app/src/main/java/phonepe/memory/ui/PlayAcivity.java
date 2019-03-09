@@ -163,6 +163,7 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         public void onFinish() {
+            resetTimer();
             showStatus("Time out, your socred: " + PrefHelper.getInstance(PlayAcivity.this).getScore());
 
         }
@@ -276,6 +277,12 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
                     }
                 })
                 .show();
+    }
+
+    private void resetTimer(){
+        timeRemaining = 60 * 1000L;
+        mStartStopTextview.setText(getString(R.string.start_game));
+        mIsStarted=false;
     }
 
 
