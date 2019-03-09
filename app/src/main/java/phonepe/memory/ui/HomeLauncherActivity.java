@@ -96,4 +96,8 @@ public class HomeLauncherActivity extends AppCompatActivity {
                 .show();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
