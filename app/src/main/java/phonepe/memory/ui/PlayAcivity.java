@@ -2,6 +2,8 @@ package phonepe.memory.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -33,6 +35,9 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
     private long timeRemaining = 60 * 1000L;
     private int mSelectedLevel;
     private int mChoiceTotalSize, mChoiceRow;
+    private SoundPool soundPool;
+    private int soundid;
+    private boolean loaded;
 
 
     @Override
@@ -40,10 +45,13 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acivity_play);
         getData();
+        initSound();
         initViews();
         initValues();
         initAdapter();
         initListener();
+
+
     }
 
     private void getData() {
@@ -189,8 +197,14 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
         mTextScoreTextView.setText(Constants.CURRENT_SCORE + PrefHelper.getInstance(this).getScore());
     }
 
+    private void playSound() {
+        if (loaded) {
+            soundPool.play(soundid, 1, 1, 0, 0, 1);
+        }
+    }
 
     private void showStatus(String message) {
+        playSound();
         new AlertDialog.Builder(this)
                 .setMessage(message)
                 .setPositiveButton(getString(R.string.button_ok), new DialogInterface.OnClickListener() {
@@ -225,5 +239,21 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
             startTimer();
 
         }
+    }
+
+    private void initSound() {
+
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 100);
+
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                       int status) {
+                loaded = true;
+            }
+        });
+
+        soundid = soundPool.load(this, R.raw.elephant, 1);
+
     }
 }
