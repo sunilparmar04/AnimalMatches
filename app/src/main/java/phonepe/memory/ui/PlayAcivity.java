@@ -123,6 +123,11 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
             public void onItemClickNotWon(int position) {
                 showStatus("Ohh you miss try again ");
             }
+
+            @Override
+            public void onItemGameNotStarted() {
+                showError();
+            }
         });
     }
 
@@ -173,6 +178,7 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
     }
 
     private void startTimer() {
+
         if (gameTimer == null) {
             gameTimer = new GameTimer(timeRemaining,
                     1000);
@@ -256,4 +262,17 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
         soundid = soundPool.load(this, R.raw.elephant, 1);
 
     }
+
+    private void showError() {
+        new AlertDialog.Builder(this)
+                .setMessage(getString(R.string.error_start_game))
+                .setPositiveButton(getString(R.string.button_ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+    }
+
+
 }

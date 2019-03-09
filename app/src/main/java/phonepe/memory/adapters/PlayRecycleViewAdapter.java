@@ -30,6 +30,7 @@ public class PlayRecycleViewAdapter extends RecyclerView.Adapter<PlayRecycleView
     int count = 0;
     boolean isReset = false;
     boolean isPlay=true;
+    boolean isStarted=false;
 
     public void resetCount() {
         count = 0;
@@ -69,13 +70,20 @@ public class PlayRecycleViewAdapter extends RecyclerView.Adapter<PlayRecycleView
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final UserChoiceModel model = listModels.get(position);
+
+
         if (isReset) {
             holder.item_image.setImageResource(R.drawable.ic_place_holder);
         }
         holder.item_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(!isStarted){
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemGameNotStarted();
+                    }
+                    return;
+                }
                 if (count > 0) {
                     int currentImage = (int) animalImageList.get(getRandomImageNumber());
                     holder.item_image.setImageResource(currentImage);
@@ -120,6 +128,7 @@ public class PlayRecycleViewAdapter extends RecyclerView.Adapter<PlayRecycleView
         void onItemClick(int position, int winPoints);
 
         void onItemClickNotWon(int position);
+        void onItemGameNotStarted();
     }
 
     private void generateRandonNumber() {
@@ -149,5 +158,10 @@ public class PlayRecycleViewAdapter extends RecyclerView.Adapter<PlayRecycleView
     }
     public  void play(){
         isPlay=true;
+    }
+
+
+    public void gameStarted(){
+        isStarted=true;
     }
 }

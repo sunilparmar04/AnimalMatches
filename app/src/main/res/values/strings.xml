@@ -5,5 +5,6 @@
     <string name="start_game">Start</string>
     <string name="pause_game">Pause</string>
     <string name="error_now_allow_level">Minimum 50 points required to play</string>
+    <string name="error_start_game">Please click on start game</string>
     <string name="button_ok">OK</string>
 </resources>
