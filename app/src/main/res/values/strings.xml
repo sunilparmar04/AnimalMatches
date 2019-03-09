@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">memory</string>
+    <string name="title_home">Animal Matches</string>
+    <string name="title_play">Play</string>
+    <string name="start_game">Start</string>
+    <string name="pause_game">Pause</string>
+    <string name="error_now_allow_level">Minimum 50 points required to play</string>
+    <string name="button_ok">OK</string>
+</resources>
