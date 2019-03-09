@@ -29,6 +29,7 @@ public class PlayRecycleViewAdapter extends RecyclerView.Adapter<PlayRecycleView
     private int selectedAnimal = -1;
     int count = 0;
     boolean isReset = false;
+    boolean isPlay=true;
 
     public void resetCount() {
         count = 0;
@@ -134,12 +135,19 @@ public class PlayRecycleViewAdapter extends RecyclerView.Adapter<PlayRecycleView
     private int randomNumber;
 
     private void startGenerateNumber() {
-        while (true) {
+        while (isPlay) {
             randomNumber = new Random().nextInt(maxNumber) + minNumber;
         }
     }
 
     private int getRandomImageNumber() {
         return randomNumber;
+    }
+
+    public void pause(){
+        isPlay=false;
+    }
+    public  void play(){
+        isPlay=true;
     }
 }

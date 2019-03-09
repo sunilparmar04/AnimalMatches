@@ -150,7 +150,7 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         public void onFinish() {
-            showStatus("Time out, you socred: "+ PrefHelper.getInstance(PlayAcivity.this).getScore());
+            showStatus("Time out, you socred: " + PrefHelper.getInstance(PlayAcivity.this).getScore());
 
         }
 
@@ -209,7 +209,9 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
 
         if (mIsStarted) {
             stopTimer();
-
+            if (mPlayRecycleViewAdapter != null) {
+                mPlayRecycleViewAdapter.pause();
+            }
         }
     }
 
@@ -217,6 +219,9 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
     protected void onRestart() {
         super.onRestart();
         if (mIsStarted) {
+            if (mPlayRecycleViewAdapter != null) {
+                mPlayRecycleViewAdapter.play();
+            }
             startTimer();
 
         }
