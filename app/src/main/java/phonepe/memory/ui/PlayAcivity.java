@@ -163,7 +163,7 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         public void onFinish() {
-            showStatus("Time out, you socred: " + PrefHelper.getInstance(PlayAcivity.this).getScore());
+            showStatus("Time out, your socred: " + PrefHelper.getInstance(PlayAcivity.this).getScore());
 
         }
 
