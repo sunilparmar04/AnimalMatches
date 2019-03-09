@@ -36,6 +36,7 @@ public class HomeLauncherActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        findViewById(R.id.backImageView).setVisibility(View.GONE);
         mSelectOptionRecyclerView = findViewById(R.id.selectOptionRecyclerView);
         findViewById(R.id.timeTextView).setVisibility(View.GONE);
         findViewById(R.id.startStopTextview).setVisibility(View.GONE);
