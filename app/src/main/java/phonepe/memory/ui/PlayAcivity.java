@@ -179,7 +179,11 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
 
     private void startTimer() {
 
+
         if (gameTimer == null) {
+            if (mPlayRecycleViewAdapter != null) {
+                mPlayRecycleViewAdapter.gameStarted();
+            }
             gameTimer = new GameTimer(timeRemaining,
                     1000);
             gameTimer.start();
