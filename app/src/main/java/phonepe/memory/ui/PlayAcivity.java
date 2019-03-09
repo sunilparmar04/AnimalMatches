@@ -150,6 +150,7 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         public void onFinish() {
+            showStatus("Time out, you socred: "+ PrefHelper.getInstance(PlayAcivity.this).getScore());
 
         }
 
@@ -157,7 +158,7 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
         public void onTick(long millisUntilFinished) {
             timeRemaining = millisUntilFinished;
             int time = (int) (millisUntilFinished / 1000);
-            mTimeTextView.setText("" + time + Constants.LEFT);
+            mTimeTextView.setText("" + time + " " + Constants.LEFT);
             Log.v("selected_item", "time left:" + time);
 
         }
@@ -200,5 +201,24 @@ public class PlayAcivity extends AppCompatActivity implements View.OnClickListen
                     }
                 })
                 .show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mIsStarted) {
+            stopTimer();
+
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (mIsStarted) {
+            startTimer();
+
+        }
     }
 }
