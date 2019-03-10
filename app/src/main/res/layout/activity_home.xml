@@ -10,7 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/action_view" />
+        <RelativeLayout
+            android:id="@+id/llActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colotWhite"
+            android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colotWhite"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+            <include layout="@layout/action_view" />
+        </RelativeLayout>
+
     </android.support.design.widget.AppBarLayout>
 
 
